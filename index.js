@@ -4,11 +4,12 @@ const dotenv=require('dotenv')
 dotenv.config();
 const connectDB = require('./config/mongooseConnection');
 connectDB();
-const userRouter=require('./Routes/userRoutes')
+const authRouter = require('./Routes/authRoute');
+const userRouter=require('./Routes/userRoutes');
 
 app.use(express.json())
 
-
+app.use('/api/auth',authRouter)
 app.use('/api/users',userRouter)
 
 
