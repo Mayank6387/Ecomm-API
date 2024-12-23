@@ -10,7 +10,7 @@ const userRouter=require('./Routes/userRoutes');
 app.use(express.json())
 
 app.use('/api/auth',authRouter)
-app.use('/api/users',userRouter)
+app.use('/api/user',userRouter)
 
 
 

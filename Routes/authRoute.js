@@ -23,12 +23,7 @@ authRouter.post('/register',async(req,res)=>{
         var token=jwt.sign({id:newUser._id, isAdmin:newUser.isAdmin},
             process.env.SECRET_KEY,
             {expiresIn:"3d"})
-
-        res.status(201).json({
-            username:savedUser.username,
-            email:savedUser.email,
-            accessToken:token
-        });
+        res.status(201).json(savedUser);
 
     }catch(err){
         res.status(500).json(err)
@@ -55,8 +50,7 @@ authRouter.post('/login',async(req,res)=>{
             {expiresIn:"3d"})
 
         res.status(200).json({message:"Login successful",
-            username:user.username,
-            email:user.email,
+            user,
             accessToken:token
         })
 
