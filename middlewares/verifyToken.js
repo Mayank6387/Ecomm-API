@@ -8,7 +8,6 @@ const verifyToken=(req,res,next)=>{
     }
     try{
         const verify=jwt.verify(token,process.env.SECRET_KEY)
-        console.log(verify)
         req.user=verify;
         next();
     }
@@ -26,4 +25,14 @@ const verifyTokenAndAuth=(req,res,next)=>{
         }
     })
 }
-module.exports={verifyToken,verifyTokenAndAuth}
+
+const verifyTokenAndAdmin=(req,res,next)=>{
+    verifyToken(req,res,()=>{
+        if(req.user.isAdmin){
+            next()
+        }else{
+            res.status(403).json({error:"You are not allowed to do this"})
+        }
+    })
+}
+module.exports={verifyToken,verifyTokenAndAuth,verifyTokenAndAdmin}
