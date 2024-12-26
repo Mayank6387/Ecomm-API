@@ -6,11 +6,17 @@ const connectDB = require('./config/mongooseConnection');
 connectDB();
 const authRouter = require('./Routes/authRoute');
 const userRouter=require('./Routes/userRoutes');
+const productsRouter=require('./Routes/productRoute');
+const cartRouter = require('./Routes/cartRoute');
+const orderRouter=require('./Routes/orderRoute')
 
 app.use(express.json())
 
 app.use('/api/auth',authRouter)
 app.use('/api/user',userRouter)
+app.use('/api/products',productsRouter)
+app.use('/api/cart',cartRouter)
+app.use('/api/order',orderRouter)
 
 
 

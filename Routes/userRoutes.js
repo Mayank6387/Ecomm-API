@@ -46,7 +46,7 @@ userRouter.get("/find/:id",verifyTokenAndAdmin,async(req,res)=>{
 })
 
 userRouter.get("/",verifyTokenAndAdmin,async(req,res)=>{
-  const query=req.query.new;
+  const query=req.query.new;  //http://localhost:3000/api/user?new=true
   try{
     const users=query?await userModel.find().sort({_id:-1}).limit(5):await userModel.find();
     res.status(200).json(users);
